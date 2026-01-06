@@ -1,45 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Proper Cut | Video Editor</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProperCut | Hasan Abdullah Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </head>
 <body>
 
-<header>
-  <h1>I'm Hasan Abdullah</h1>
-  <p>Professional Video Editor</p>
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#services">Services</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
-  </nav>
-</header>
+    <div id="cursor">
+        <img src="https://i.ibb.co/L6V2fGZ/scissors-icon.png" id="scissors" alt="scissors">
+    </div>
 
-<section id="services">
-  <h2>Services</h2>
-  <ul>
-    <li>YouTube Automation</li>
-    <li>Cinematic Documentary Edits</li>
-    <li>Sound Design & Color Grading</li>
-  </ul>
-</section>
+    <nav class="navbar">
+        <div class="logo">Proper<span>Cut</span></div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
 
-<section id="about">
-  <h2>About Me</h2>
-  <p>4+ Years Experience | 300+ Projects | 50+ Clients</p>
-</section>
+    <section id="home" class="hero">
+        <div class="hero-image-left">
+            <img src="assets/image/hasan.jpg" alt="Hasan Abdullah" class="profile-img">
+        </div>
 
-<section id="contact">
-  <h2>Contact</h2>
-  <a href="#">Facebook</a>
-  <a href="#">LinkedIn</a>
-  <a href="#">WhatsApp</a>
-</section>
+        <div class="hero-content-right">
+            <h1 class="hero-title">I'M <span class="highlight">HASAN ABDULLAH</span></h1>
+            <h2 class="hero-subtitle">A PROFESSIONAL VIDEO EDITOR</h2>
+            
+            <div class="skills-rotator">
+                SPECIALIZED IN: <span id="changing-text">YOUTUBE AUTOMATION</span>
+            </div>
+        </div>
+        
+        <div class="ticker-wrapper">
+            <div class="ticker">
+                <span>✂️ DF</span> <span>✂️ UD</span> <span>✂️ HTU</span> <span>✂️ TCM</span> <span>✂️ MP</span>
+                <span>✂️ DF</span> <span>✂️ UD</span> <span>✂️ HTU</span> <span>✂️ TCM</span> <span>✂️ MP</span>
+            </div>
+        </div>
+    </section>
 
-<script src="script.js"></script>
+    <section id="services" class="services">
+        <h2 class="section-title">PORTFOLIO & SERVICES</h2>
+        <div class="service-grid"></div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="about-container">
+            <h2 class="section-title" style="text-align: left; margin-bottom: 30px;">THE MASTERMIND</h2>
+            <div class="about-flex">
+                <div class="about-text">
+                    <p>I am <strong>Hasan Abdullah</strong>, a Master Video Editor with 4+ years of elite experience.</p>
+                    <p>I build retention-driven visual experiences for global giants.</p>
+                    <div class="stats">
+                        <div><h4>300+</h4><p>Projects</p></div>
+                        <div><h4>50+</h4><p>Clients</p></div>
+                    </div>
+                </div>
+                <div class="expertise-box">
+                    <h3>MY EXPERTISE</h3>
+                    <ul>
+                        <li>✂️ High-Retention YouTube Automation</li>
+                        <li>✂️ Cinematic Documentary Edits</li>
+                        <li>✂️ Sound Design & Color Grading</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <h2 class="section-title">START A PROJECT</h2>
+        <form id="contact-form" action="https://formspree.io/f/mdakvege" method="POST">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" placeholder="Tell me about your project..."></textarea>
+            <button type="submit">SEND MESSAGE</button>
+        </form>
+        <div class="social-links">
+            <a href="https://facebook.com/..." target="_blank">Facebook</a>
+            <a href="https://linkedin.com/..." target="_blank">LinkedIn</a>
+            <a href="https://wa.me/..." target="_blank">WhatsApp</a>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
 </body>
 </html>
-
