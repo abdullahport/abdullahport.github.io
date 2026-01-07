@@ -1,17 +1,24 @@
-const cursor = document.getElementById("cursor");
-const scissor = document.getElementById("scissor");
+const cursor = document.getElementById("scissor-cursor");
 
-const leftSound = new Audio("assets/sound/left.mp3");
-const rightSound = new Audio("assets/sound/right.mp3");
+let lastX = innerWidth/2, lastY = innerHeight/2;
 
-document.addEventListener("mousemove", e => {
+document.addEventListener("mousemove", e=>{
   gsap.to(cursor,{
     x:e.clientX,
     y:e.clientY,
-    duration:.08,
-    ease:"power2.out"
+    duration:.08
   });
+
+  const dx = e.clientX - lastX;
+  const dy = e.clientY - lastY;
+  const angle = Math.atan2(dy, dx) * 180 / Math.PI;
+
+  gsap.to(cursor,{ rotate: angle, duration:.15 });
+
+  lastX = e.clientX;
+  lastY = e.clientY;
 });
+
 
 /* LEFT CLICK */
 document.addEventListener("mousedown", e=>{
