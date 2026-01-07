@@ -1,39 +1,70 @@
-const cursor = document.getElementById("cursor");
-const scissor = document.getElementById("scissor");
+/* =============================== */
+/* ✂ SCISSOR CURSOR LOGIC */
+/* =============================== */
 
-const leftSound = new Audio("assets/sound/left.mp3");
-const rightSound = new Audio("assets/sound/right.mp3");
+const cursor = document.getElementById("scissor-cursor");
+const bladeL = document.getElementById("blade-left");
+const bladeR = document.getElementById("blade-right");
 
-document.addEventListener("mousemove", e => {
+let lastX = window.innerWidth / 2;
+let lastY = window.innerHeight / 2;
+
+/* FOLLOW MOUSE */
+document.addEventListener("mousemove", e=>{
   gsap.to(cursor,{
     x:e.clientX,
     y:e.clientY,
     duration:.08,
     ease:"power2.out"
   });
+
+  /* rotate based on direction */
+  const dx = e.clientX - lastX;
+  const dy = e.clientY - lastY;
+  const angle = Math.atan2(dy, dx) * 180 / Math.PI;
+
+  gsap.to(cursor,{
+    rotate:angle,
+    duration:.15
+  });
+
+  lastX = e.clientX;
+  lastY = e.clientY;
 });
 
-/* LEFT CLICK */
-document.addEventListener("mousedown", e=>{
-  if(e.button===0){
-    leftSound.currentTime=0;
-    leftSound.play();
-    gsap.fromTo(scissor,
-      {scale:1},
-      {scale:.7,rotate:-20,yoyo:true,repeat:1}
-    );
-  }
+/* ✂ CUT ANIMATION (OPEN → CLOSE) */
+document.addEventListener("mousedown",()=>{
+  gsap.to(bladeL,{
+    rotate:-25,
+    transformOrigin:"100% 100%",
+    duration:.1
+  });
+  gsap.to(bladeR,{
+    rotate:25,
+    transformOrigin:"0% 100%",
+    duration:.1
+  });
 });
 
-/* RIGHT CLICK */
-document.addEventListener("contextmenu", e=>{
-  e.preventDefault();
-  rightSound.currentTime=0;
-  rightSound.play();
-  gsap.fromTo(scissor,
-    {scale:1},
-    {scale:.7,rotate:20,yoyo:true,repeat:1}
-  );
+document.addEventListener("mouseup",()=>{
+  gsap.to([bladeL, bladeR],{
+    rotate:0,
+    duration:.12
+  });
+});
+
+/* HOVER EFFECT */
+document.querySelectorAll("a, button, .service-card, .portfolio-card, .logo")
+.forEach(el=>{
+  el.addEventListener("mouseenter",()=>{
+    cursor.classList.add("scissor-hover");
+    gsap.to(cursor,{scale:1.4,duration:.2});
+  });
+
+  el.addEventListener("mouseleave",()=>{
+    cursor.classList.remove("scissor-hover");
+    gsap.to(cursor,{scale:1,duration:.2});
+  });
 });
 
 
