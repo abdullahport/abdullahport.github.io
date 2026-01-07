@@ -494,3 +494,34 @@ body{cursor:auto}
     font-size:2.6rem;
   }
 }
+/* ============================= */
+/* 🔥 HERO LOOP TICKER ANIMATION */
+/* ============================= */
+
+.ticker-wrapper{
+  width:100%;
+  overflow:hidden;
+  background:rgba(255,255,255,0.03);
+  padding:18px 0;
+  border-top:1px solid rgba(255,255,255,0.06);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+}
+
+.ticker{
+  display:flex;
+  width:max-content;
+  animation:tickerMove 22s linear infinite;
+}
+
+.ticker span{
+  margin-right:60px;
+  font-size:1.1rem;
+  font-weight:800;
+  letter-spacing:2px;
+  color:#444;
+}
+
+@keyframes tickerMove{
+  0%{transform:translateX(0)}
+  100%{transform:translateX(-50%)}
+}
