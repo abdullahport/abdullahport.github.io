@@ -37,7 +37,7 @@ body{
   position:absolute;
   inset:0;
   background:url("assets/image/bg.jpg") center/cover;
-  opacity:.15;
+  opacity:.50;
 }
 .hero-content{
   position:relative;
