@@ -158,3 +158,34 @@ document.querySelectorAll(".contact-social a").forEach(box=>{
     gsap.to(box,{y:0,scale:1,duration:.3});
   });
 });
+const cursor = document.getElementById("scissor-cursor");
+const bladeL = document.getElementById("blade-left");
+const bladeR = document.getElementById("blade-right");
+
+let lastX = innerWidth/2, lastY = innerHeight/2;
+
+document.addEventListener("mousemove", e=>{
+  gsap.to(cursor,{
+    x:e.clientX,
+    y:e.clientY,
+    duration:.08
+  });
+
+  const dx=e.clientX-lastX;
+  const dy=e.clientY-lastY;
+  const angle=Math.atan2(dy,dx)*180/Math.PI;
+
+  gsap.to(cursor,{ rotate:angle, duration:.15 });
+
+  lastX=e.clientX;
+  lastY=e.clientY;
+});
+
+document.addEventListener("mousedown",()=>{
+  gsap.to(bladeL,{ rotate:-25, transformOrigin:"100% 100%", duration:.1 });
+  gsap.to(bladeR,{ rotate:25, transformOrigin:"0% 100%", duration:.1 });
+});
+
+document.addEventListener("mouseup",()=>{
+  gsap.to([bladeL,bladeR],{ rotate:0, duration:.12 });
+});
