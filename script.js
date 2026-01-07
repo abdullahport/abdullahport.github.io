@@ -1,61 +1,129 @@
-gsap.registerPlugin(ScrollTrigger);
-
 const cursor = document.getElementById("cursor");
 const scissor = document.getElementById("scissor");
-const bladeL = document.getElementById("blade-left");
-const bladeR = document.getElementById("blade-right");
+const scissorContainer = document.getElementById("scissor-container");
 
-let lastX = innerWidth/2;
-let lastY = innerHeight/2;
+// Audio Files
+const leftSound = new Audio("assets/sound/cut.mp3");
+const rightSound = new Audio("assets/sound/right.mp3");
 
-document.addEventListener("mousemove", e=>{
-  gsap.to(cursor,{
-    x:e.clientX,
-    y:e.clientY,
-    duration:.08,
-    ease:"power2.out"
+// Smooth Mouse Follow
+document.addEventListener("mousemove", e => {
+  gsap.to(cursor, {
+    x: e.clientX,
+    y: e.clientY,
+    duration: 0.1,
+    ease: "power2.out"
+  });
+});
+
+/* LEFT CLICK ANIMATION & SOUND */
+document.addEventListener("mousedown", e => {
+  if (e.button === 0) { // Left Click
+    leftSound.currentTime = 0;
+    leftSound.play();
+    
+    // Scissor Cut Animation
+    gsap.to(".blade-left", { rotate: 20, duration: 0.1, yoyo: true, repeat: 1, transformOrigin: "50% 50%" });
+    gsap.to(".blade-right", { rotate: -20, duration: 0.1, yoyo: true, repeat: 1, transformOrigin: "50% 50%" });
+  }
+});
+
+/* RIGHT CLICK ANIMATION & SOUND */
+document.addEventListener("contextmenu", e => {
+  e.preventDefault();
+  rightSound.currentTime = 0;
+  rightSound.play();
+  
+  gsap.to(scissor, {
+    scale: 0.8,
+    duration: 0.1,
+    yoyo: true,
+    repeat: 1
+  });
+});
+
+/* HOVER EFFECT ON LINKS/CARDS */
+const hoverTargets = document.querySelectorAll(".nav-item, .service-card, .portfolio-card, button, .contact-social a");
+
+hoverTargets.forEach(target => {
+  target.addEventListener("mouseenter", () => {
+    // মাউস বড় হবে, কালার পরিবর্তন হবে (সায়ান) এবং মাথা উপরে ঘুরবে
+    gsap.to(scissor, { 
+      scale: 1.5, 
+      rotate: 45, // মাথা উপরের দিকে ঘোরানোর জন্য
+      color: "#00ffcc", 
+      duration: 0.3 
+    });
+    // শ্যাডো কালারও চেঞ্জ হবে
+    scissor.style.filter = "drop-shadow(0 0 10px #00ffcc)";
   });
 
-  const dx=e.clientX-lastX;
-  const dy=e.clientY-lastY;
-  const angle=Math.atan2(dy,dx)*180/Math.PI;
-
-  gsap.to(cursor,{rotate:angle,duration:.15});
-
-  lastX=e.clientX;
-  lastY=e.clientY;
+  target.addEventListener("mouseleave", () => {
+    // আগের অবস্থায় ফিরে আসবে
+    gsap.to(scissor, { 
+      scale: 1, 
+      rotate: 0, 
+      color: "#ff3c3c", 
+      duration: 0.3 
+    });
+    scissor.style.filter = "drop-shadow(0 0 6px #ff3c3c)";
+  });
 });
 
-/* CUT ANIMATION */
-document.addEventListener("mousedown",()=>{
-  gsap.to(bladeL,{rotate:-25,transformOrigin:"100% 100%",duration:.1});
-  gsap.to(bladeR,{rotate:25,transformOrigin:"0% 100%",duration:.1});
-});
-document.addEventListener("mouseup",()=>{
-  gsap.to([bladeL,bladeR],{rotate:0,duration:.12});
-});
+/* Typing Effect (Restored) */
+const typingTexts = [
+  "FACELESS VIDEO EDITOR",
+  "CRIME DOCUMENTARY EDITOR",
+  "RETENTION STORYTELLER"
+];
+let typingIndex = 0;
+let charIndex = 0;
+let typingEl = document.getElementById("typingText");
 
-/* TYPING */
-const texts=["FACELESS VIDEO EDITOR","CRIME DOCUMENTARY EDITOR","RETENTION STORYTELLER"];
-let ti=0,ci=0,el=document.getElementById("typingText");
-
-function type(){
-  if(ci<texts[ti].length){
-    el.textContent+=texts[ti][ci++];
-    setTimeout(type,80);
-  }else setTimeout(erase,1500);
-}
-function erase(){
-  if(ci>0){
-    el.textContent=texts[ti].slice(0,--ci);
-    setTimeout(erase,40);
-  }else{
-    ti=(ti+1)%texts.length;
-    setTimeout(type,300);
+function typeEffect(){
+  if(charIndex < typingTexts[typingIndex].length){
+    typingEl.textContent += typingTexts[typingIndex][charIndex];
+    charIndex++;
+    setTimeout(typeEffect, 80);
+  } else {
+    setTimeout(eraseEffect, 1800);
   }
 }
-type();
+function eraseEffect(){
+  if(charIndex > 0){
+    typingEl.textContent = typingTexts[typingIndex].substring(0, charIndex - 1);
+    charIndex--;
+    setTimeout(eraseEffect, 50);
+  } else {
+    typingIndex = (typingIndex + 1) % typingTexts.length;
+    setTimeout(typeEffect, 300);
+  }
+}
+if(typingEl) {
+    typingEl.textContent="";
+    typeEffect();
+}
 
-/* HERO ANIMATION */
-gsap.from(".hero-image-wrap img",{x:-80,opacity:0,duration:1.2});
-gsap.from(".hero-text>*",{y:40,opacity:0,stagger:.15,duration:1});
+/* GSAP Animations for Hero & Portfolio (Restored) */
+gsap.from(".hero-image-wrap img",{
+  x:-80, opacity:0, duration:1.2, ease:"power3.out"
+});
+gsap.from(".hero-text > *",{
+  y:40, opacity:0, duration:1, stagger:.15, delay:.4, ease:"power3.out"
+});
+gsap.from(".portfolio-card",{
+  scrollTrigger:{ trigger:"#portfolio", start:"top 80%" },
+  y:60, opacity:0, stagger:.15, duration:1, ease:"power3.out"
+});
+
+/* Smooth Scroll */
+document.querySelectorAll(".nav-item").forEach(link=>{
+  link.addEventListener("click",e=>{
+    const href = link.getAttribute("href");
+    if(href.startsWith("#")){
+        e.preventDefault();
+        const target=document.querySelector(href);
+        if(target) target.scrollIntoView({behavior:"smooth"});
+    }
+  });
+});
