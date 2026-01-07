@@ -1,57 +1,190 @@
 *{margin:0;padding:0;box-sizing:border-box}
-body{
-  font-family:Inter;
-  background:#050505;
-  color:#fff;
-  cursor:none;
-}
+body{font-family:Inter;background:#050505;color:#fff;cursor:none !important}
 
 /* CUSTOM CURSOR */
 #cursor{
   position:fixed;
-  width:40px;
-  height:40px;
+  width:50px;
+  height:50px;
   pointer-events:none;
-  z-index:99999;
+  z-index:10000;
   transform:translate(-50%,-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #scissor{
-  width:100%;
-  height:100%;
-  stroke:#ff3c3c;
-  stroke-width:4;
-  fill:none;
-  filter:drop-shadow(0 0 8px #ff3c3c);
+  color: #ff3c3c; /* SVG stroke use currentColor */
+  filter:drop-shadow(0 0 6px #ff3c3c);
+  transform: rotate(-45deg); /* ডিফল্টভাবে মাথা বাম দিকে থাকবে */
+  transition: color 0.3s, filter 0.3s;
+}
+
+/* NAVBAR */
+.navbar{
+  position:fixed;
+  top:20px;
+  left:50%;
+  transform:translateX(-50%);
+  width:90%;
+  max-width:1200px;
+  padding:18px 30px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:rgba(10,10,10,.75);
+  backdrop-filter:blur(15px);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:18px;
+  z-index:999;
+}
+
+/* LOGO */
+.logo{
+  font-size:1.7rem;
+  font-weight:900;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.logo span{color:#ff3c3c}
+.logo-icon{
+  color:#ff3c3c;
+  font-size:1.5rem;
+}
+
+/* LINKS */
+.nav-links{
+  display:flex;
+  gap:20px;
+  list-style:none;
+}
+
+.nav-item{
+  position:relative;
+  padding:10px 18px;
+  border-radius:12px;
+  text-decoration:none;
+  color:#ddd;
+  font-weight:600;
+  transition:.3s;
+  border:1px solid transparent;
+}
+
+.nav-item:hover{
+  color:#fff;
+  background:rgba(255,60,60,.08);
+  border-color:#ff3c3c;
+  box-shadow:0 0 20px rgba(255,60,60,.3);
 }
 
 /* HERO */
 .hero{
   min-height:100vh;
-  padding:140px 8%;
   position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:140px 8%;
   overflow:hidden;
 }
+
 .hero-bg{
   position:absolute;
   inset:0;
-  background:url("assets/image/bg.jpg") center/cover;
-  opacity:.50;
+  background:
+    linear-gradient(to right, #000 30%, transparent),
+    url("assets/image/bg.jpg") center/cover;
+  opacity:.70;
+  z-index:0;
 }
+
 .hero-content{
   position:relative;
+  z-index:2;
   display:grid;
   grid-template-columns:1fr 1.2fr;
+  align-items:center;
   gap:80px;
-  z-index:2;
 }
+
 .hero-image-wrap img{
   width:100%;
   max-height:82vh;
   object-fit:contain;
 }
+
 .hero-title{
-  font-family:Anton;
+  font-family:'Anton', sans-serif;
   font-size:4.6rem;
+  line-height:1.05;
+  margin-bottom:25px;
 }
 .hero-title span{color:#ff3c3c}
+
+/* SERVICES */
+.services{padding:140px 10%}
+.services-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:35px;
+  margin-top:70px;
+}
+.service-card{
+  padding:40px 30px;
+  border-radius:22px;
+  background:linear-gradient(180deg,#0c0c0c,#070707);
+  border:1px solid #1a1a1a;
+  transition:.45s ease;
+}
+.service-card:hover{transform:translateY(-14px)}
+
+/* PORTFOLIO */
+.portfolio{padding:140px 10%}
+.portfolio-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:35px;
+  margin-top:70px;
+}
+.portfolio-card{
+  padding:50px 30px;
+  border-radius:22px;
+  background:#0c0c0c;
+  border:1px solid #1a1a1a;
+  text-decoration:none;
+  color:#fff;
+  transition:.4s;
+  display: block;
+}
+
+/* CONTACT */
+.contact{padding:160px 10%; background:#070707}
+.contact-wrapper{display:grid; grid-template-columns:1fr 1fr; gap:80px}
+.contact-form{display:flex; flex-direction:column; gap:18px}
+.contact-form input, .contact-form textarea, .contact-form select{
+  padding:16px; background:#111; border:1px solid #333; color:#fff;
+}
+.contact-form button{
+  padding:16px; background:#fff; font-weight:900; cursor:none;
+}
+
+.contact-social{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:25px;
+  margin-top: 50px;
+}
+.contact-social a{
+  background:#0c0c0c; border:1px solid #1f1f1f; padding:30px;
+  border-radius:20px; text-align:center; text-decoration:none; color:#fff;
+}
+
+/* MOBILE */
+@media(max-width:900px){
+  body{cursor: auto !important;}
+  #cursor{display:none}
+  .hero-content, .contact-wrapper{grid-template-columns:1fr; text-align:center}
+  .nav-links{display:none}
+}
