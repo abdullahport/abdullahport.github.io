@@ -1,25 +1,38 @@
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Inter;background:#050505;color:#fff;cursor:none}
+/* =============================== */
+/* ✂ CUSTOM SCISSOR CURSOR */
+/* =============================== */
 
-/* CUSTOM CURSOR */
-#cursor{
+body{
+  cursor:none; /* hide default mouse */
+}
+
+#scissor-cursor{
   position:fixed;
+  top:0;
+  left:0;
   width:40px;
   height:40px;
   pointer-events:none;
   z-index:9999;
-  transform:translate(-50%,-50%);
+  transform:translate(-50%, -50%);
 }
 
-#scissor{
+#scissor-cursor svg{
+  width:100%;
+  height:100%;
   stroke:#ff3c3c;
   stroke-width:4;
   fill:none;
-  filter:drop-shadow(0 0 6px #ff3c3c);
-  transition:.2s;
+  filter:drop-shadow(0 0 8px rgba(255,60,60,.8));
+  transition:filter .2s ease;
 }
 
-.scissor.small{width:18px;height:18px}
+/* hover glow */
+.scissor-hover svg{
+  stroke:#00ffcc;
+  filter:drop-shadow(0 0 14px #00ffcc);
+}
+
 
 /* NAVBAR */
 .navbar{
