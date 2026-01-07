@@ -1,25 +1,26 @@
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Inter;background:#050505;color:#fff;cursor:none}
+body{
+  cursor:none;
+}
 
-/* CUSTOM CURSOR */
-#cursor{
+#scissor-cursor{
   position:fixed;
   width:40px;
   height:40px;
   pointer-events:none;
-  z-index:9999;
+  z-index:99999;
   transform:translate(-50%,-50%);
 }
 
-#scissor{
+#scissor-cursor svg{
+  width:100%;
+  height:100%;
   stroke:#ff3c3c;
   stroke-width:4;
   fill:none;
-  filter:drop-shadow(0 0 6px #ff3c3c);
-  transition:.2s;
+  filter:drop-shadow(0 0 8px #ff3c3c);
 }
 
-.scissor.small{width:18px;height:18px}
 
 /* NAVBAR */
 .navbar{
