@@ -15,15 +15,16 @@
 
 <body>
 
-<!-- ✂ SCISSOR CURSOR -->
-<div id="scissor-cursor">
-  <svg viewBox="0 0 100 100">
-    <circle cx="30" cy="70" r="10" />
-    <circle cx="70" cy="70" r="10" />
-    <line id="blade-left" x1="30" y1="60" x2="50" y2="20" />
-    <line id="blade-right" x1="70" y1="60" x2="50" y2="20" />
+<!-- CUSTOM CURSOR -->
+<div id="cursor">
+  <svg id="scissor" width="36" height="36" viewBox="0 0 100 100">
+    <circle cx="30" cy="70" r="12" />
+    <circle cx="70" cy="70" r="12" />
+    <line x1="30" y1="60" x2="50" y2="20" />
+    <line x1="70" y1="60" x2="50" y2="20" />
   </svg>
 </div>
+
 
 <!-- NAVBAR -->
 <nav class="navbar">
@@ -36,122 +37,207 @@
     <li><a href="#home" class="nav-item">Home</a></li>
     <li><a href="#services" class="nav-item">Services</a></li>
     <li><a href="#portfolio" class="nav-item">Portfolio</a></li>
+    <li><a href="#about" class="nav-item">About</a></li>
     <li><a href="#contact" class="nav-item">Contact</a></li>
   </ul>
 </nav>
 
+
 <!-- HERO -->
 <section id="home" class="hero">
+
+  <!-- BACKGROUND -->
   <div class="hero-bg"></div>
 
+  <!-- CONTENT -->
   <div class="hero-content">
-   <div class="hero-image-wrap">
-  <div class="hero-image-circle">
-    <img src="assets/image/hasan.png" alt="Hasan Abdullah">
-  </div>
-</div>
 
+    <!-- LEFT IMAGE -->
+    <div class="hero-image-wrap">
+      <img src="assets/image/hasan.png" alt="Hasan Abdullah">
+    </div>
 
+    <!-- RIGHT TEXT -->
     <div class="hero-text">
+
       <p class="hero-name">HASAN ABDULLAH</p>
 
       <h1 class="hero-title">
         DOCUMENTARY & <br>
-        <span id="typingText"></span>
+        <span id="typingText">FACELESS VIDEO EDITOR</span>
       </h1>
 
       <p class="hero-sub">
         I craft high-retention crime, mystery & faceless YouTube documentaries  
         for long-term global clients.
       </p>
+
     </div>
   </div>
 
- <!-- 🔥 CHANNEL TIMELINE LOOP -->
-<div class="timeline-wrapper">
-  <div class="timeline-track">
-
-    <div class="timeline-item"><span class="cut">✂</span> DF</div>
-    <div class="timeline-item"><span class="cut">✂</span> MP</div>
-    <div class="timeline-item"><span class="cut">✂</span> UD</div>
-    <div class="timeline-item"><span class="cut">✂</span> TCM</div>
-    <div class="timeline-item"><span class="cut">✂</span> SM</div>
-    <div class="timeline-item"><span class="cut">✂</span> HTU</div>
-    <div class="timeline-item"><span class="cut">✂</span> SD</div>
-    <div class="timeline-item"><span class="cut">✂</span> U</div>
-    <div class="timeline-item"><span class="cut">✂</span> SI</div>
-    <div class="timeline-item"><span class="cut">✂</span> MS</div>
-    <div class="timeline-item"><span class="cut">✂</span> TU</div>
-    <div class="timeline-item"><span class="cut">✂</span> K</div>
-    <div class="timeline-item"><span class="cut">✂</span> MC</div>
-    <div class="timeline-item"><span class="cut">✂</span> Discovery</div>
-    <div class="timeline-item"><span class="cut">✂</span> Mystery</div>
-
-    <!-- duplicate for smooth infinite loop -->
-    <div class="timeline-item"><span class="cut">✂</span> DF</div>
-    <div class="timeline-item"><span class="cut">✂</span> MP</div>
-    <div class="timeline-item"><span class="cut">✂</span> UD</div>
-    <div class="timeline-item"><span class="cut">✂</span> TCM</div>
-    <div class="timeline-item"><span class="cut">✂</span> SM</div>
-    <div class="timeline-item"><span class="cut">✂</span> HTU</div>
-    <div class="timeline-item"><span class="cut">✂</span> SD</div>
-    <div class="timeline-item"><span class="cut">✂</span> U</div>
-    <div class="timeline-item"><span class="cut">✂</span> SI</div>
-    <div class="timeline-item"><span class="cut">✂</span> MS</div>
-    <div class="timeline-item"><span class="cut">✂</span> TU</div>
-    <div class="timeline-item"><span class="cut">✂</span> K</div>
-    <div class="timeline-item"><span class="cut">✂</span> MC</div>
-    <div class="timeline-item"><span class="cut">✂</span> Discovery</div>
-    <div class="timeline-item"><span class="cut">✂</span> Mystery</div>
-
-  </div>
-</div>
-
 </section>
+
 
 <!-- SERVICES -->
 <section id="services" class="services">
+
   <h2 class="section-title">SERVICES FOR UPWORK CLIENTS</h2>
+
   <div class="services-grid">
+
     <div class="service-card">
       <div class="service-icon">🎬</div>
       <h3>Crime & Mystery Documentary</h3>
-      <p>Dark storytelling, cinematic pacing & retention edits.</p>
+      <p>
+        Dark storytelling, real cases, biker gangs, narco operations,
+        cinematic pacing & retention-driven edits.
+      </p>
     </div>
+
     <div class="service-card">
       <div class="service-icon">🤖</div>
-      <h3>Faceless Automation</h3>
-      <p>Cash cow systems with storytelling & motion.</p>
+      <h3>Faceless Automation Channels</h3>
+      <p>
+        Cash cow systems using stock footage, AI voice, motion text
+        & engaging story structure.
+      </p>
     </div>
+
     <div class="service-card">
       <div class="service-icon">🚀</div>
-      <h3>Science Explainers</h3>
-      <p>Educational cinematic storytelling.</p>
+      <h3>Science & Space Explainers</h3>
+      <p>
+        NASA, JWST, discoveries, educational storytelling
+        with cinematic motion & clarity.
+      </p>
     </div>
+
     <div class="service-card">
       <div class="service-icon">🐾</div>
-      <h3>Animal & Nature</h3>
-      <p>High retention emotional edits.</p>
+      <h3>Animal & Nature Facts</h3>
+      <p>
+        High-retention short & long-form edits with emotional
+        pacing and visual rhythm.
+      </p>
     </div>
+
   </div>
+
 </section>
+
 
 <!-- PORTFOLIO -->
 <section id="portfolio" class="portfolio">
+
   <h2 class="section-title">FEATURED WORK</h2>
+
   <div class="portfolio-grid">
-    <a class="portfolio-card"><span class="pf-icon">🎥</span><h3>Documentary</h3></a>
-    <a class="portfolio-card"><span class="pf-icon">🤖</span><h3>Faceless</h3></a>
-    <a class="portfolio-card"><span class="pf-icon">🚀</span><h3>Science</h3></a>
-    <a class="portfolio-card"><span class="pf-icon">🐾</span><h3>Nature</h3></a>
+
+    <a href="portfolio/documentary.html" class="portfolio-card">
+      <span class="pf-icon">🎥</span>
+      <h3>Documentary</h3>
+      <p>Crime • Mystery • Dark Stories</p>
+    </a>
+
+    <a href="portfolio/faceless.html" class="portfolio-card">
+      <span class="pf-icon">🤖</span>
+      <h3>Faceless</h3>
+      <p>Automation • Cash Cow</p>
+    </a>
+
+    <a href="portfolio/science.html" class="portfolio-card">
+      <span class="pf-icon">🚀</span>
+      <h3>Science</h3>
+      <p>Space • Explainers</p>
+    </a>
+
+    <a href="portfolio/animals.html" class="portfolio-card">
+      <span class="pf-icon">🐾</span>
+      <h3>Nature</h3>
+      <p>Animals • Facts</p>
+    </a>
+
   </div>
+
 </section>
+
 
 <!-- CONTACT -->
 <section id="contact" class="contact">
-  <h2 class="contact-title">LET’S BUILD <span>YOUR CHANNEL</span></h2>
-</section>
 
-<script src="script.js"></script>
-</body>
-</html>
+  <div class="contact-wrapper">
+
+    <!-- LEFT -->
+    <div class="contact-info">
+      <h2 class="contact-title">
+        LET’S BUILD <span>YOUR CHANNEL</span>
+      </h2>
+
+      <p class="contact-desc">
+        Looking for a long-term video editor who understands
+        <strong>retention, storytelling & YouTube psychology</strong>?
+        <br><br>
+        I work with serious creators, agencies & Upwork clients worldwide.
+      </p>
+
+      <div class="contact-details">
+        <p>📧 propercutforyou@gmail.com</p>
+        <p>📱 WhatsApp: +880 1870 860540</p>
+      </div>
+    </div>
+
+    <!-- RIGHT FORM -->
+    <form class="contact-form"
+      action="https://formspree.io/f/mdakvege"
+      method="POST">
+
+      <input type="text" name="name" placeholder="Full Name" required>
+
+      <input type="email" name="email" placeholder="Email Address" required>
+
+      <input type="text" name="channel" placeholder="YouTube Channel / Website">
+
+      <select name="service" required>
+        <option value="">Select Service</option>
+        <option>Documentary Editing</option>
+        <option>Faceless / Automation</option>
+        <option>Cash Cow Channel</option>
+        <option>Science / Space Explainer</option>
+        <option>Animal / Nature Content</option>
+      </select>
+
+      <textarea name="message" rows="5"
+        placeholder="Tell me about your project, goals & deadline..."
+        required></textarea>
+
+      <button type="submit">SEND PROJECT DETAILS</button>
+    </form>
+
+  </div>
+
+  <!-- SOCIAL ICON BOXES -->
+  <div class="contact-social">
+
+    <a href="https://www.facebook.com/profile.php?id=61585959697232" target="_blank">
+      <span>FB</span>
+      <p>Facebook</p>
+    </a>
+
+    <a href="https://www.linkedin.com/in/hasan-abdullah-0963473a3" target="_blank">
+      <span>IN</span>
+      <p>LinkedIn</p>
+    </a>
+
+    <a href="https://x.com/propercutforyou" target="_blank">
+      <span>X</span>
+      <p>Twitter / X</p>
+    </a>
+
+    <a href="https://wa.me/8801870860540" target="_blank">
+      <span>WA</span>
+      <p>WhatsApp</p>
+    </a>
+
+  </div>
+
+</section>
