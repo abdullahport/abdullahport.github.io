@@ -4,86 +4,114 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ProperCut | Documentary & Faceless Video Editor</title>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<link rel="icon" href="assets/image/logo.png">
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </head>
 <body>
 
+<!-- CUSTOM CURSOR (desktop only) -->
 <div id="cursor">
-  <svg id="scissor" width="45" height="45" viewBox="0 0 100 100">
-    <g class="blade-left">
-      <circle cx="30" cy="75" r="10" stroke="currentColor" stroke-width="4" fill="none" />
-      <line x1="35" y1="67" x2="60" y2="25" stroke="currentColor" stroke-width="6" />
-    </g>
-    <g class="blade-right">
-      <circle cx="70" cy="75" r="10" stroke="currentColor" stroke-width="4" fill="none" />
-      <line x1="65" y1="67" x2="40" y2="25" stroke="currentColor" stroke-width="6" />
-    </g>
+  <svg id="scissor" width="34" height="34" viewBox="0 0 100 100">
+    <circle cx="30" cy="70" r="12"/>
+    <circle cx="70" cy="70" r="12"/>
+    <line id="bladeL" x1="30" y1="60" x2="50" y2="20"/>
+    <line id="bladeR" x1="70" y1="60" x2="50" y2="20"/>
   </svg>
 </div>
 
+<!-- NAVBAR -->
 <nav class="navbar">
   <div class="logo">
-    <span class="logo-icon">✂</span> Proper<span>Cut</span>
+    <img src="assets/image/logo.png" alt="ProperCut" class="logo-img">
+    Proper<span>Cut</span>
   </div>
-  <ul class="nav-links">
+
+  <button id="menuBtn" class="menu-btn" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+
+  <ul class="nav-links" id="navLinks">
     <li><a href="#home" class="nav-item">Home</a></li>
     <li><a href="#services" class="nav-item">Services</a></li>
     <li><a href="#portfolio" class="nav-item">Portfolio</a></li>
     <li><a href="#about" class="nav-item">About</a></li>
-    <li><a href="#contact" class="nav-item">Contact</a></li>
+    <li><a href="#contact" class="nav-item nav-cta">Order a Cut</a></li>
   </ul>
 </nav>
 
+<!-- HERO -->
 <section id="home" class="hero">
   <div class="hero-bg"></div>
+
   <div class="hero-content">
     <div class="hero-image-wrap">
       <img src="assets/image/hasan.png" alt="Hasan Abdullah">
     </div>
+
     <div class="hero-text">
-      <p class="hero-name">HASAN ABDULLAH</p>
+      <p class="hero-name">HASAN ABDULLAH — PROPERCUT</p>
       <h1 class="hero-title">
         DOCUMENTARY & <br>
-        <span id="typingText">FACELESS VIDEO EDITOR</span>
+        <span id="typingText"></span><span class="cursor-blink">|</span>
       </h1>
       <p class="hero-sub">
-        I craft high-retention crime, mystery & faceless YouTube documentaries for long-term global clients.
+        I craft high-retention crime, mystery & faceless YouTube documentaries
+        for long-term global clients.
       </p>
+
+      <div class="hero-btns">
+        <a href="#contact" class="btn btn-solid">Order a Cut</a>
+        <a href="#portfolio" class="btn btn-outline">View Portfolio</a>
+      </div>
     </div>
   </div>
+
+  <div class="scroll-cue">scroll</div>
 </section>
 
+<div class="cut-divider"><span>✂</span></div>
+
+<!-- SERVICES -->
 <section id="services" class="services">
-  <h2 class="section-title">SERVICES FOR UPWORK CLIENTS</h2>
+  <p class="eyebrow">What I Cut</p>
+  <h2 class="section-title">Services for Upwork Clients</h2>
+
   <div class="services-grid">
     <div class="service-card">
       <div class="service-icon">🎬</div>
       <h3>Crime & Mystery Documentary</h3>
-      <p>Dark storytelling, real cases, cinematic pacing & retention-driven edits.</p>
+      <p>Dark storytelling, real cases, biker gangs, narco operations, cinematic pacing & retention-driven edits.</p>
     </div>
     <div class="service-card">
       <div class="service-icon">🤖</div>
       <h3>Faceless Automation Channels</h3>
-      <p>Cash cow systems using stock footage, AI voice, & engaging story structure.</p>
+      <p>Cash cow systems using stock footage, AI voice, motion text & engaging story structure.</p>
     </div>
     <div class="service-card">
       <div class="service-icon">🚀</div>
       <h3>Science & Space Explainers</h3>
-      <p>NASA, JWST, discoveries with cinematic motion & clarity.</p>
+      <p>NASA, JWST, discoveries, educational storytelling with cinematic motion & clarity.</p>
     </div>
     <div class="service-card">
       <div class="service-icon">🐾</div>
       <h3>Animal & Nature Facts</h3>
-      <p>High-retention short & long-form edits with visual rhythm.</p>
+      <p>High-retention short & long-form edits with emotional pacing and visual rhythm.</p>
     </div>
   </div>
 </section>
 
+<div class="cut-divider"><span>✂</span></div>
+
+<!-- PORTFOLIO -->
 <section id="portfolio" class="portfolio">
-  <h2 class="section-title">FEATURED WORK</h2>
+  <p class="eyebrow">Selected Cuts</p>
+  <h2 class="section-title">Featured Work</h2>
+
   <div class="portfolio-grid">
     <a href="portfolio/documentary.html" class="portfolio-card">
       <span class="pf-icon">🎥</span>
@@ -95,24 +123,99 @@
       <h3>Faceless</h3>
       <p>Automation • Cash Cow</p>
     </a>
+    <a href="portfolio/science.html" class="portfolio-card">
+      <span class="pf-icon">🚀</span>
+      <h3>Science</h3>
+      <p>Space • Explainers</p>
+    </a>
+    <a href="portfolio/animals.html" class="portfolio-card">
+      <span class="pf-icon">🐾</span>
+      <h3>Nature</h3>
+      <p>Animals • Facts</p>
+    </a>
   </div>
 </section>
 
+<div class="cut-divider"><span>✂</span></div>
+
+<!-- ABOUT -->
+<section id="about" class="about">
+  <div class="about-wrap">
+    <div class="about-image">
+      <img src="assets/image/hasan.png" alt="Hasan Abdullah">
+    </div>
+    <div class="about-text">
+      <p class="eyebrow">Who's Cutting</p>
+      <h2 class="section-title">About ProperCut</h2>
+      <p>
+        I'm Hasan Abdullah, the editor behind ProperCut. I work with faceless
+        and documentary-style YouTube channels — turning raw footage, scripts
+        and voiceovers into retention-focused videos that keep viewers watching
+        to the end.
+      </p>
+      <div class="about-stats">
+        <div><strong>4+</strong><span>Niches Covered</span></div>
+        <div><strong>8-10min</strong><span>Avg. Delivery Length</span></div>
+        <div><strong>100%</strong><span>Client-Focused Edits</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cut-divider"><span>✂</span></div>
+
+<!-- CONTACT / ORDER -->
 <section id="contact" class="contact">
   <div class="contact-wrapper">
     <div class="contact-info">
-      <h2 class="contact-title">LET’S BUILD <span>YOUR CHANNEL</span></h2>
+      <p class="eyebrow">Let's Work Together</p>
+      <h2 class="contact-title">START <span>YOUR ORDER</span></h2>
+      <p class="contact-desc">
+        Looking for a long-term video editor who understands
+        <strong>retention, storytelling & YouTube psychology</strong>?
+        I work with serious creators, agencies & Upwork clients worldwide.
+      </p>
       <div class="contact-details">
         <p>📧 propercutforyou@gmail.com</p>
         <p>📱 WhatsApp: +880 1405 805895</p>
       </div>
     </div>
+
     <form class="contact-form" action="https://formspree.io/f/mdakvege" method="POST">
       <input type="text" name="name" placeholder="Full Name" required>
       <input type="email" name="email" placeholder="Email Address" required>
+      <input type="text" name="whatsapp" placeholder="WhatsApp Number">
+      <input type="text" name="channel" placeholder="YouTube Channel / Website">
+
+      <select name="service" required>
+        <option value="">Select Service</option>
+        <option>Documentary Editing</option>
+        <option>Faceless / Automation</option>
+        <option>Cash Cow Channel</option>
+        <option>Science / Space Explainer</option>
+        <option>Animal / Nature Content</option>
+      </select>
+
+      <textarea name="message" rows="5" placeholder="Tell me about your project, goals & deadline..." required></textarea>
+
       <button type="submit">SEND PROJECT DETAILS</button>
     </form>
   </div>
+
+  <div class="contact-social">
+    <a href="mailto:propercutforyou@gmail.com">
+      <span>✉</span>
+      <p>Email</p>
+    </a>
+    <a href="https://wa.me/8801405805895" target="_blank" rel="noopener">
+      <span>WA</span>
+      <p>WhatsApp</p>
+    </a>
+  </div>
+
+  <footer class="footer">
+    <p>© <span id="year"></span> ProperCut — Hasan Abdullah. All rights reserved.</p>
+  </footer>
 </section>
 
 <script src="script.js"></script>
