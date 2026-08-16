@@ -1,85 +1,119 @@
-const cursor = document.getElementById("cursor");
-const scissor = document.getElementById("scissor");
+/* ===== FOOTER YEAR ===== */
+document.getElementById("year").textContent = new Date().getFullYear();
 
-// Sounds
-const leftSound = new Audio("assets/sound/cut.mp3");
-const rightSound = new Audio("assets/sound/right.mp3");
+/* ===== MOBILE MENU ===== */
+const menuBtn = document.getElementById("menuBtn");
+const navLinks = document.getElementById("navLinks");
 
-// ১. মাউস মুভমেন্ট
-document.addEventListener("mousemove", (e) => {
-    gsap.to(cursor, {
-        x: e.clientX,
-        y: e.clientY,
-        duration: 0.1,
-        ease: "power2.out"
-    });
+menuBtn.addEventListener("click", () => {
+  navLinks.classList.toggle("open");
+});
+document.querySelectorAll(".nav-item").forEach(link => {
+  link.addEventListener("click", () => navLinks.classList.remove("open"));
 });
 
-// ২. বাম ক্লিক (Cut Animation & Sound)
-document.addEventListener("mousedown", (e) => {
-    if (e.button === 0) { // Left Click
-        leftSound.currentTime = 0;
-        leftSound.play().catch(e => console.log("Sound error:", e));
+/* ===== SMOOTH SCROLL ===== */
+document.querySelectorAll('.nav-item[href^="#"]').forEach(link => {
+  link.addEventListener("click", e => {
+    e.preventDefault();
+    document.querySelector(link.getAttribute("href"))
+      ?.scrollIntoView({ behavior: "smooth" });
+  });
+});
 
-        // Cut Animation (Open and Close)
-        gsap.to(".blade-left", { rotate: 25, duration: 0.1, yoyo: true, repeat: 1, transformOrigin: "50% 50%" });
-        gsap.to(".blade-right", { rotate: -25, duration: 0.1, yoyo: true, repeat: 1, transformOrigin: "50% 50%" });
+/* ===== CUSTOM CURSOR (desktop / fine pointer only) ===== */
+const isFinePointer = window.matchMedia("(pointer: fine)").matches;
+
+if (isFinePointer) {
+  const cursor = document.getElementById("cursor");
+  const scissor = document.getElementById("scissor");
+  const cutSound = new Audio("assets/sound/cut.mp3");
+  const rightSound = new Audio("assets/sound/right.mp3");
+
+  document.addEventListener("mousemove", e => {
+    gsap.to(cursor, { x: e.clientX, y: e.clientY, duration: 0.08, ease: "power2.out" });
+  });
+
+  /* LEFT CLICK = cut */
+  document.addEventListener("mousedown", e => {
+    if (e.button === 0) {
+      cutSound.currentTime = 0;
+      cutSound.play().catch(() => {});
+      gsap.fromTo(scissor, { scale: 1 }, { scale: 0.65, duration: 0.12, yoyo: true, repeat: 1, ease: "power1.inOut" });
+      gsap.to("#bladeL", { attr: { x2: 55, y2: 60 }, duration: 0.1, yoyo: true, repeat: 1 });
+      gsap.to("#bladeR", { attr: { x2: 45, y2: 60 }, duration: 0.1, yoyo: true, repeat: 1 });
     }
-});
+  });
 
-// ৩. ডান ক্লিক (Right Sound)
-document.addEventListener("contextmenu", (e) => {
+  /* RIGHT CLICK = alternate action */
+  document.addEventListener("contextmenu", e => {
     e.preventDefault();
     rightSound.currentTime = 0;
-    rightSound.play().catch(e => console.log("Sound error:", e));
-});
+    rightSound.play().catch(() => {});
+    gsap.fromTo(scissor, { rotate: 0 }, { rotate: 25, duration: 0.15, yoyo: true, repeat: 1, ease: "power1.inOut" });
+  });
 
-// ৪. হোভার ইফেক্ট (Home, Service, Portfolio ইত্যাদি লেখার ওপর নিলে)
-const hoverLinks = document.querySelectorAll(".nav-item, .service-card, .portfolio-card, .logo, button, a");
+  /* HOVER GROW ON INTERACTIVE ELEMENTS */
+  const interactiveEls = document.querySelectorAll(
+    "a, button, .service-card, .portfolio-card, .contact-social a, .nav-item"
+  );
 
-hoverLinks.forEach(link => {
-    link.addEventListener("mouseenter", () => {
-        gsap.to(scissor, { 
-            scale: 1.6, 
-            rotate: 90, // মাথা উপরে ঘুরে যাবে
-            color: "#00ffcc", // কালার চেঞ্জ
-            duration: 0.3 
-        });
-        scissor.style.filter = "drop-shadow(0 0 12px #00ffcc)";
+  interactiveEls.forEach(el => {
+    el.addEventListener("mouseenter", () => {
+      cursor.classList.add("hovering");
+      gsap.to(cursor, { scale: 1.6, duration: 0.25, ease: "power2.out" });
+
+      const icon = el.querySelector(".service-icon, .pf-icon, span");
+      if (icon) gsap.to(icon, { scale: 1.25, rotate: 8, duration: 0.3, ease: "power3.out" });
     });
 
-    link.addEventListener("mouseleave", () => {
-        gsap.to(scissor, { 
-            scale: 1, 
-            rotate: -45, // আবার আগের মতো বামে কাত হবে
-            color: "#ff3c3c", 
-            duration: 0.3 
-        });
-        scissor.style.filter = "drop-shadow(0 0 6px #ff3c3c)";
+    el.addEventListener("mouseleave", () => {
+      cursor.classList.remove("hovering");
+      gsap.to(cursor, { scale: 1, duration: 0.25, ease: "power2.out" });
+
+      const icon = el.querySelector(".service-icon, .pf-icon, span");
+      if (icon) gsap.to(icon, { scale: 1, rotate: 0, duration: 0.3, ease: "power3.out" });
     });
+  });
+}
+
+/* ===== TYPING EFFECT ===== */
+const typingTexts = [
+  "FACELESS VIDEO EDITOR",
+  "CRIME DOCUMENTARY EDITOR",
+  "RETENTION STORYTELLER"
+];
+let typingIndex = 0, charIndex = 0;
+const typingEl = document.getElementById("typingText");
+
+function typeEffect() {
+  if (charIndex < typingTexts[typingIndex].length) {
+    typingEl.textContent += typingTexts[typingIndex][charIndex++];
+    setTimeout(typeEffect, 75);
+  } else {
+    setTimeout(eraseEffect, 1600);
+  }
+}
+function eraseEffect() {
+  if (charIndex > 0) {
+    typingEl.textContent = typingTexts[typingIndex].substring(0, --charIndex);
+    setTimeout(eraseEffect, 40);
+  } else {
+    typingIndex = (typingIndex + 1) % typingTexts.length;
+    setTimeout(typeEffect, 300);
+  }
+}
+typeEffect();
+
+/* ===== LOAD ANIMATIONS ===== */
+gsap.registerPlugin(ScrollTrigger);
+
+gsap.from(".hero-image-wrap img", { x: -60, opacity: 0, duration: 1.1, ease: "power3.out" });
+gsap.from(".hero-text > *", { y: 35, opacity: 0, duration: 0.9, stagger: 0.12, delay: 0.3, ease: "power3.out" });
+
+gsap.utils.toArray(".service-card, .portfolio-card, .about-wrap, .contact-wrapper").forEach(el => {
+  gsap.from(el, {
+    scrollTrigger: { trigger: el, start: "top 85%" },
+    y: 50, opacity: 0, duration: 0.9, ease: "power3.out"
+  });
 });
-
-// Typing Effect
-const typingTexts = ["FACELESS VIDEO EDITOR", "CRIME DOCUMENTARY EDITOR", "RETENTION STORYTELLER"];
-let typingIndex = 0, charIndex = 0, typingEl = document.getElementById("typingText");
-
-function type() {
-    if (charIndex < typingTexts[typingIndex].length) {
-        typingEl.textContent += typingTexts[typingIndex][charIndex];
-        charIndex++;
-        setTimeout(type, 80);
-    } else {
-        setTimeout(erase, 1500);
-    }
-}
-function erase() {
-    if (charIndex > 0) {
-        typingEl.textContent = typingTexts[typingIndex].substring(0, charIndex - 1);
-        charIndex--;
-        setTimeout(erase, 50);
-    } else {
-        typingIndex = (typingIndex + 1) % typingTexts.length;
-        setTimeout(type, 300);
-    }
-}
-type();
